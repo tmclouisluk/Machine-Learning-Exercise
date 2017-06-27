@@ -88,14 +88,14 @@ lambdaC = lambda/(2*m) * (sum(sum(Theta1_new.^2)) + sum(sum(Theta2_new.^2)));
 J = 1/m * sum(sum(Jc)) + lambdaC;
 
 
+s3 = h - Y;
+s2 = ((s3 * Theta2) .* sigmoidGradient([ones(size(z2, 1), 1) z2]))(:, 2:end);
 
+d1 = s2'*a1;
+d2 = s3'*a2;
 
-
-
-
-
-
-
+Theta1_grad = 1/m * (d1 + (lambda)*[zeros(size(Theta1,1), 1) Theta1(:, 2:end)]);
+Theta2_grad = 1/m * (d2 + (lambda)*[zeros(size(Theta2,1), 1) Theta2(:, 2:end)]);
 
 % -------------------------------------------------------------
 
